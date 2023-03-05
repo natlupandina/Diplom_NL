@@ -1,0 +1,4 @@
+export const email = "natalia.rasada@gmail.com";
+export const username = "3623531";
+export const password = "natalia123";
+export const userToken = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozNjIzNTMxLCJ1c2VyX3R5cGUiOiJ1c2VyIiwiZmluZ2VycHJpbnQiOiJiMmUzZjVjMTU1NmFiYjliN2U0ODMxMDQ0MWFkZDNlNCIsImV4cCI6MTk5MzE4Nzg5MSwiaWF0IjoxNjc3ODI3ODkxfQ.OV2bhZxWOPykS4EA1qSSX5KRhmZsAJUcTz7Ln6gWXsm7VOxCrbyPc-OYLblg77kw_55folfJLPZaMQVLf8abZQ";
