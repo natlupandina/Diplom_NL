@@ -18,21 +18,36 @@ describe("Onliner6", () => {
         searchPopup.validateSeachLinzResults(searchConst3);
         searchPopup.linzClick();
         linzPage.linzSuggestionsClick();
-        const linzPageTitleText = linzPage.getLinzTitleText();
-        const linzPagePriceText = linzPage.getLinzPriceText();
+        //const linzPageTitleText = linzPage.getLinzTitleText();
+        //const linzPagePriceText = linzPage.getLinzPriceText();
         linzPage.addToCart();
-        linzPage.verifyCartButtonTextChanged();
+        linzPage.verifyCartButtonTextChanged('В корзине');
         cartPage.verifyCartCounterNumber(1);
-        cartPage.openCart();
-        cartPage.validateLinzInCart(linzPageTitleText, linzPagePriceText);
-        cartPage.order();
-        cartPage.verifyOrderName(searchConst3);
-        cartPage.typeInAddressandContacts(street, dom, contacts);
-        cartPage.proceedToPayment();
-        cy.go('back');
-    })
 
-    after(() => {
-        cartPage.clearCart();
+        linzPage.getProductTitleLinzPage().then(productTitleText => {
+            //         // Сохраняем цену продукта
+            linzPage.getProductPriceLinzPage().then(productPriceText => {
+                //             // Переходим в корзину
+                cartPage.openCart();
+                //             // Сравниваем название добавленного продукта
+                cartPage.compareAddedProductTitle(productTitleText);
+                //             // Сравниваем цену добавленного продукта
+                cartPage.compareAddedProductPrice(productPriceText);
+            })
+
+            //cartPage.openCart();
+
+            //cartPage.validateLinzInCart(linzPageTitleText, linzPagePriceText);
+
+            cartPage.order();
+            cartPage.verifyOrderName(searchConst3);
+            cartPage.typeInAddressandContacts(street, dom, contacts);
+            cartPage.proceedToPayment();
+            cy.go('back');
+        })
+
+        after(() => {
+            cartPage.clearCart();
+        })
     })
 })

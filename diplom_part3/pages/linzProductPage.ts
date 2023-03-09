@@ -6,9 +6,7 @@ class LinzPage {
     private linzTitleLocator = "//h1[contains(@class,'catalog-masthead')]";
     private linzPriceLocator = "(//div[contains(@class,'offers-description__price')])[2]";
 
-
     //Веб элементы
-
 
     private get linzSuggestions() {
         return cy.xpath(this.linzSuggestionsLocator);
@@ -17,7 +15,6 @@ class LinzPage {
     private get addLinzToCart() {
         return cy.xpath(this.addToCartLocator);
     }
-
 
     private get linzPageTitle() {
         return cy.xpath(this.linzTitleLocator);
@@ -37,11 +34,11 @@ class LinzPage {
         this.addLinzToCart.click();
     }
 
-    verifyCartButtonTextChanged() {
-        this.addLinzToCart.should('contain.text', 'В корзине');
+    verifyCartButtonTextChanged(newExpectedText: string) {
+        this.addLinzToCart.should('contain.text', 'newExpectedText');
     }
 
-    getLinzTitleText(): string {
+    /*getLinzTitleText(): string {
         let textToReturn: string = '';
         this.linzPageTitle.invoke('text').then((titleText) => {
             textToReturn = titleText;
@@ -58,11 +55,16 @@ class LinzPage {
 
         return textToReturn;
     }
+*/
 
+    getProductTitleLinzPage() {
+        return this.linzPageTitle.invoke('text');
+    }
+
+    getProductPriceLinzPage() {
+        return this.linzPrice.invoke('text');
+    }
 
 }
-
-
-
 
 export const linzPage = new LinzPage();

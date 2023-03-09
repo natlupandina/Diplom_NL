@@ -1,7 +1,5 @@
 import { familia, privateName } from "../cypress/const/orderData";
 
-
-
 class CartPage {
     // Локаторы
 
@@ -67,10 +65,10 @@ class CartPage {
     private get nameField() {
         return cy.xpath(this.nameFieldLocator);
     }
+
     private get clearCartButton() {
         return cy.xpath(this.clearCartLocator);
     }
-
 
     // Методы взаимодействия с ними
 
@@ -82,10 +80,18 @@ class CartPage {
         this.cartClick.click();
     }
 
-    validateLinzInCart(expectedTitle: string, expectedPrice: string) {
+    compareAddedProductTitle(expectedText: string): void {
+        this.linzTitleInCart.should('contain.text', expectedText);
+    }
+
+    compareAddedProductPrice(expectedText: string): void {
+        this.linzPriceInCart.should('contain.text', expectedText);
+    }
+
+    /*validateLinzInCart(expectedTitle: string, expectedPrice: string) {
         this.linzTitleInCart.should('have.text', expectedTitle);
         this.linzPriceInCart.should('have.text', expectedPrice);
-    }
+    }*/
 
     order() {
         this.proceedToOrderPage.click();
