@@ -28,7 +28,7 @@ describe("NegativeTests", () => {
     });
 
     test("registered wasn't set to true", () => {
-        expect (regForm.register('Natal@com','12', '', 0, false)).toBeFalsy(); // как можно проверить метод registered на наличии каждого обязательного поля заполненным?  и что метод registered не установил переключатель в true
+        expect (regForm.register('Natal@com','12', '', 0, false)).toBeFalsy(); // как можно проверить метод register на наличии каждого обязательного поля заполненным?  и что метод register не установил переключатель в true
     });
 })
 

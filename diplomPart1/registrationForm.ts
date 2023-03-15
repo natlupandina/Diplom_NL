@@ -80,7 +80,7 @@ export class RegistrationForm {
             if (!this.termsAgreement) {
                 errors += `\n This termsAgreement is ${termsAgreement}, but should be true`;
             }
-            this.register = this.register; // этим я хочу показать, что registred  не был установлен в trueю Верно ли это?
+            this.registered = this.registered; // этим я хочу показать, что registred  не был установлен в trueю Верно ли это?
             return errors;
         }
 
