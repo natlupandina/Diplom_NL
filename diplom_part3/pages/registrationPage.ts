@@ -1,5 +1,3 @@
-
-
 class RegistrationPage {
     // Локаторы
     private loginFieldRegistrationLocator = "//input[contains(@class,'auth-input')][@type='email']";
@@ -79,7 +77,6 @@ class RegistrationPage {
 
     verifyLoginFormOpened() {
         this.loginForm.should('be.visible');
-
     }
     clickRegisterLink() {
         this.registerLink.click();
@@ -110,6 +107,5 @@ class RegistrationPage {
         this.proceedToMailboxButton.should('be.visible');
     }
 }
-
 
 export const registrationPage = new RegistrationPage();

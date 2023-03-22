@@ -6,7 +6,7 @@ export async function getAllPhotosByAlbumId(albumId: number, expectedError?: num
     return await get("/photos", { albumId: albumId }, expectedError);
 }
 
-export async function getPhotoByPhotoId(id: number, expectedError?: number): Promise<IPhoto> {
+export async function getPhotoByPhotoId(id: number, expectedError?: number): Promise<IPhoto[]> {
     return await get("/photos", { id: id }, expectedError);
 }
 

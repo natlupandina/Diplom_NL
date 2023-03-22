@@ -3,7 +3,7 @@ import { IAlbum } from "../models/albumModel"
 export const expectedAlbum: IAlbum = {
     "userId": 1,
     "id": 5,
-    "title": "nesciunt quas odio"
+    "title": "eaque aut omnis a"
   }
 
   export const newexpectedAlbum: IAlbum = {

@@ -11,7 +11,7 @@ describe("Albums", () => {
 
     test("Get  photo by photoId", async () => {
         const receivedPhoto = await getPhotoByPhotoId(51);
-        expect(receivedPhoto.title).toEqual(existingPhoto.title); //нужно ли еще проверять другие параметры как url?  или достаточно только title?
+        expect(receivedPhoto[0].title).toEqual(existingPhoto.title); //нужно ли еще проверять другие параметры как url?  или достаточно только title?
     });
 
     test("Upload new photo", async () => {

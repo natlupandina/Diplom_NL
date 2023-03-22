@@ -2,6 +2,6 @@
 
 declare namespace Cypress {
   interface Chainable<Subject = any> {
-    getIframeBody(xpath: string): Chainable<any>;
+    getIFrameBody(xpath: string): Chainable<any>;
   }
 }

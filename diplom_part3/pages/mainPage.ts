@@ -5,6 +5,10 @@ class MainPage {
     private expandProfileMenuButtonLocator = "//*[contains(@class,'b-top-profile__item_arrow')]";
     private userNicknameLabelLocator = "//*[@class='b-top-profile__name']/a";
     private searchFieldLocator = '//*[@class="fast-search__input"]';
+    private laptopsAndNetworksLocator = "(//ul[contains(@class,'catalog-navigation-classifier')]/li)[4]";
+    private laptopsAndCompsLocator = '//div[contains(text(),"Ноутбуки, компьютеры, мониторы")]';
+    private laptopsLocator='//a[(@href="https://catalog.onliner.by/notebook")]';
+
 
     // Веб-элементы (приватные)
     private get loginButton() {
@@ -27,6 +31,19 @@ class MainPage {
         return cy.xpath(this.searchFieldLocator);
     }
 
+    private get laptopsAndNetworks() {
+        return cy.xpath(this.laptopsAndNetworksLocator);
+    }
+
+    private get laptopsAndComps() {
+        return cy.xpath(this.laptopsAndCompsLocator);
+    }
+
+    private get laptops() {
+        return cy.xpath(this.laptopsLocator);
+    }
+
+
     // Методы взаимодействия с ними
     openLoginPage() {
         this.loginButton.click();
@@ -47,10 +64,12 @@ class MainPage {
     setSearchTerm(term: string) {
         this.searchField.type(term);
     }
+
+    openLaptops() {
+        this.laptopsAndNetworks.click();
+        this.laptopsAndComps.click();
+        this.laptops.click();
+    }
 }
-
-
-
-
 
 export const mainPage = new MainPage();

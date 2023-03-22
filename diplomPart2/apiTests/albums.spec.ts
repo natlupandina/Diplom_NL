@@ -9,12 +9,12 @@ describe("Albums", () => {
 
     test("Get  album by albumId", async () => {
         const actualAlbum = await getAlbumById(5);
-        expect(actualAlbum.title).toEqual(expectedAlbum.title); // Received: undefined  что то с функцией?
+        expect(actualAlbum[0].title).toEqual(expectedAlbum.title); 
     });
 
-    test("Get  album by userId", async () => {
-        const actualAlbum = await getAlbumByUserId(11);
-        expect(actualAlbum.title).toEqual(expectedAlbum.title);
+    test("Get  all albums by userId", async () => {
+        const allAlbums = await getAlbumByUserId(9);
+        expect(allAlbums).toHaveLength(10);
     });
 
     test("Create new album", async () => {

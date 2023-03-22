@@ -3,7 +3,7 @@ import { familia, privateName } from "../cypress/const/orderData";
 class CartPage {
     // Локаторы
 
-    private cartCounterLocator = "//div[@id='userbar']//a/div";
+    private cartCounterLocator = "(//span[contains(@class, 'b-top-profile__counter')])[3]";
     private cartLocator = "//div[@id='userbar']/div/div/a";
     private linzTitleInCartLocator = "(//*[contains(@class,'cart-form__offers-flex')]//div)[7]";
     private linzPriceInCartLocator = "(//div[contains(@class,'cart-form__description')]/span)[2]";

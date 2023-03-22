@@ -10,13 +10,12 @@ describe("Onliner10", () => {
     it("test10", () => {
         mainPage.openCatalog();
         tvProductPage.openElectronicaSection();
-        //mainPage.opentvAndVideo();
+        tvProductPage.opentvAndVideo();
         tvProductPage.opentvSection();
         tvProductPage.openfirstTv();
         tvProductPage.clickCheckbox();
         tvProductPage.verifyCheckboxState();
         tvProductPage.verifyPlashka();
         tvProductPage.goToTvSection();
-
     })
 })

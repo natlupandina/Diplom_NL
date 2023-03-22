@@ -21,4 +21,3 @@ describe("Onliner2", () => {
     })
 })
 
-//Вконце тест рана появляется такой exception :  (uncaught exception)TypeError: Cannot read properties of null (reading 'postMessage')

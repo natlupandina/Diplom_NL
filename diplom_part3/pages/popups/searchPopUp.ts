@@ -1,49 +1,50 @@
 
-
 class SearchPopup {
     // Локаторы
-    private searchFrameContainerLocator = '//iframe[@class="modal-iframe"]';
-    private searchResultsMemoryCartLocator = '(.//div[@class="result__item result__item_category"])[1]';  //локатор ссылка поиска по словам карты памяти
-    private searchResultsAllItemsLocator = "//div[@class= 'search__content-wrapper']/ul";
+    private searchFrameContainerLocator = "//iframe[@class='modal-iframe']";
+    private searchLocator= "//input[@class= 'search__input']"; //локатор поля поиска
+    private searchResultsMemoryCartLocator = '(//div[@class="result__item result__item_category"])[1]';  //локатор ссылка поиска по словам карты памяти
+    private searchResultsAllItemsLocator = "//div[contains(@class,'search__content-wrapper')]/ul";
     private priceLocator = "//div[@class= 'product__price']";
     private suggestionsLocator = "//a[@class= 'button button_orange product__button']";
-    private photoLocator = "//div[@class= 'product__title']";
-    private linzSearchLocator = "//div[@class='product__title']/a";
-    private searchResultsLinzLocator = "//div[contains(@class,'result__item result__item_product')]";
+    private photoLocator = "//div[@class= 'product__title']/a";
+    private searchResultsLinzLocator = "//div[contains(@class,'result__wrapper')]";
     //Веб элементы
 
     private get photo() {
         return cy.xpath(this.photoLocator);
     }
 
-    private get linzSearch() {
-        return cy.xpath(this.linzSearchLocator);
-    }
-
     // Методы взаимодействия с ними
 
-    validateSeachMemoryCartResults(searchConst: string) {
-        cy.getIframeBody(this.searchFrameContainerLocator)
+    validateSearchMemoryCartResults(searchConst: string) {
+        cy.getIFrameBody(this.searchFrameContainerLocator)
             .xpath(this.searchResultsMemoryCartLocator)
             .should('contain.text', searchConst)
+            .xpath(this.searchResultsAllItemsLocator).children().should('have.length.at.least', 2);
     };
 
-    validateSeachLinzResults(searchConst3: string) {
-        cy.getIframeBody(this.searchFrameContainerLocator)
+    validateSearchLinzResults(searchConst3: string) {
+        cy.getIFrameBody(this.searchFrameContainerLocator)
             .xpath(this.searchResultsLinzLocator)
             .should('contain.text', searchConst3)
     };
 
     clearSearch() {
-        cy.get(this.searchFrameContainerLocator).clear();
+        cy.getIFrameBody(this.searchFrameContainerLocator)
+        .xpath(this.searchLocator).clear()
+        .should('have.value', '')
+        .xpath(this.searchResultsAllItemsLocator).children().should('have.length', 0);
     }
 
-    verifyNoSearchResult(searchCount: number) {
-        cy.get(this.searchResultsAllItemsLocator).should('have.length', searchCount); 
+    doNewSearchinIframe(term:string){
+        cy.getIFrameBody(this.searchFrameContainerLocator)  
+        .xpath(this.searchLocator).type(term)
+        .should ('have.value', term);
     }
 
     verifyPhotoIsDisplayed(searchConst2: string, expectedCount: number) {
-        cy.getIframeBody(this.searchFrameContainerLocator)
+        cy.getIFrameBody(this.searchFrameContainerLocator)
             .xpath(this.searchResultsAllItemsLocator)
             .should('have.length', expectedCount)
             .each((title) => {
@@ -52,7 +53,7 @@ class SearchPopup {
     }
 
     verifyPriceAndSuggestionsDisplayed() {
-        cy.getIframeBody(this.searchFrameContainerLocator)
+        cy.getIFrameBody(this.searchFrameContainerLocator)
             .xpath(this.priceLocator)
             .should('be.visible')
             .xpath(this.suggestionsLocator) //мржно ли так совместить два xpath в одном методе?
@@ -60,11 +61,14 @@ class SearchPopup {
     }
 
     openPhoto() {
-        this.photo.click();
+        cy.getIFrameBody(this.searchFrameContainerLocator)
+        .xpath(this.photoLocator).click();
     }
 
     linzClick() {
-        this.linzSearch.click();
+        cy.getIFrameBody(this.searchFrameContainerLocator)
+        .xpath(this.searchResultsLinzLocator)
+        .click();
     }
 }
 

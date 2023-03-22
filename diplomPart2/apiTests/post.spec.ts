@@ -9,7 +9,7 @@ describe("Posts", () => {
 
     test("Get post by postID", async () => {
         const actualPost = await getPostById(5);
-        expect(actualPost.title).toEqual(expectedPost.title); // Received: undefined  что то с функцией?
+        expect(actualPost[0].title).toEqual(expectedPost.title);
     });
 
     test("Create Post", async () => {
@@ -20,7 +20,9 @@ describe("Posts", () => {
     });
 
     test("Get fake post", async () => {
-        await getPostById(0, 404);  // Received: 200  Expected: 404
+        const fakePost = await getPostById(0); // если здесь реализовать так - await getPostById(0, 404); получим: // Received: 200  Expected: 404. 
+        //В постмане тоже 200 ответ - так как вернулся пустой массив. Если пустой массив преобразовать в объект - как можно из объекта получить 404?
+        expect(fakePost).toHaveLength(0);
     });
 
     test("Get all posts by userID", async () => {
@@ -44,7 +46,7 @@ describe("Posts", () => {
     });
 
     test("Update Post", async () => {
-        const postUpdated = await updatePost(7,"title updated");
+        const postUpdated = await updatePost(7, "title updated");
         console.log("post's title updated: ", postUpdated);
         expect(postUpdated.title).toBe("title updated");
     });

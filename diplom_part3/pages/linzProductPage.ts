@@ -1,8 +1,8 @@
 class LinzPage {
     // Локаторы
 
-    private linzSuggestionsLocator = "(//ul[@class='b-offers-subnav']/li)[2]";
-    private addToCartLocator = "(//div[@class='offers-list__flex']//a)[4]";
+    private linzSuggestionsLocator = "(//div//ul[contains(@id,'product-sub-navigation-container')]/li)[2]";
+    private addToCartLocator = "(//div[contains(@class,'offers-list__part offers-list__part_action')]//div/a)[2]";
     private linzTitleLocator = "//h1[contains(@class,'catalog-masthead')]";
     private linzPriceLocator = "(//div[contains(@class,'offers-description__price')])[2]";
 
@@ -35,7 +35,7 @@ class LinzPage {
     }
 
     verifyCartButtonTextChanged(newExpectedText: string) {
-        this.addLinzToCart.should('contain.text', 'newExpectedText');
+        this.addLinzToCart.should('contain.text', newExpectedText);
     }
 
     /*getLinzTitleText(): string {
@@ -64,7 +64,6 @@ class LinzPage {
     getProductPriceLinzPage() {
         return this.linzPrice.invoke('text');
     }
-
 }
 
 export const linzPage = new LinzPage();

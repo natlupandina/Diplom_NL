@@ -5,7 +5,7 @@ export async function getAllPosts() {
     return await get("/posts");
 }
 
-export async function getPostById(id: number, expectedError?: number): Promise<IPost> {
+export async function getPostById(id: number, expectedError?: number): Promise<IPost[]> {
     return await get("/posts", { id: id }, expectedError);
 }
 

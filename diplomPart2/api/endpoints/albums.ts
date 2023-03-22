@@ -5,7 +5,7 @@ export async function getAllAlbums() {
     return await get("/albums");
 }
 
-export async function getAlbumById(id: number, expectedError?: number): Promise<IAlbum> {
+export async function getAlbumById(id: number, expectedError?: number): Promise<IAlbum[]> {
     return await get("/albums", { id: id }, expectedError);
 }
 

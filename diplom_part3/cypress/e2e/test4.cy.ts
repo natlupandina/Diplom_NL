@@ -12,10 +12,9 @@ describe("Onliner4", () => {
 
     it("test4", () => {
         mainPage.setSearchTerm(searchConst);
-        searchPopup.validateSeachMemoryCartResults(searchConst);
+        searchPopup.validateSearchMemoryCartResults(searchConst);
         searchPopup.clearSearch();
-        searchPopup.verifyNoSearchResult(0);
-        mainPage.setSearchTerm(searchConst2);
+        searchPopup.doNewSearchinIframe(searchConst2);
         searchPopup.verifyPhotoIsDisplayed(searchConst2, 1);
         searchPopup.verifyPriceAndSuggestionsDisplayed();
         searchPopup.openPhoto();

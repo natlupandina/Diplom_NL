@@ -3,3 +3,4 @@ export const dom = "3";
 export const contacts = "+375296000000";
 export const privateName = "Natalia";
 export const familia = "Ivanova";
+export const newExpectedText='В корзине';
