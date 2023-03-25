@@ -4,7 +4,6 @@ class RegistrationPage {
     private passwordFieldLocator1 = "//input[contains(@placeholder,'Придумайте пароль')]";
     private passwordFieldLocator2 = "//input[contains(@placeholder,'Повторите пароль')]";
     private loginButtonLocator = "//button[@type='submit'][contains(@class,'auth-button')]";
-    private loginFormLocator = "//div[contains(@class,'auth-form__body')]";
     private toRegisterLocator = "(//a[contains(@class,'auth-form__link auth-form__link_primary auth-form__link_small')])[1]";
     private registrationFormLocator = "//div[contains(text(),'Регистрация')]";
     private specifyPasswLocator = "(//div[contains(text(), 'Укажите пароль')])[1]";
@@ -30,10 +29,6 @@ class RegistrationPage {
 
     private get loginButton() {
         return cy.xpath(this.loginButtonLocator);
-    }
-
-    private get loginForm() {
-        return cy.xpath(this.loginFormLocator);
     }
 
     private get registerLink() {
@@ -75,19 +70,14 @@ class RegistrationPage {
         this.loginButton.click();
     }
 
-    verifyLoginFormOpened() {
-        this.loginForm.should('be.visible');
-    }
     clickRegisterLink() {
         this.registerLink.click();
-    }
-
-    verifyRegisterForm() {
         this.registerForm.should('be.visible');
     }
 
+
     verifyRegisterAlert() {
-        this.passwordField1.should('have.css', 'background-color', 'rgb(255, 231, 230)'); //как можно реализовать через and и добавить "Укажите пароль"?
+        this.passwordField1.should('have.css', 'background-color', 'rgb(255, 231, 230)'); //можно ли реализовать через and и добавить "Укажите пароль"?
         this.passwordField2.should('have.css', 'background-color', 'rgb(255, 231, 230)');
         this.specifyPassw.should('be.visible');
     }

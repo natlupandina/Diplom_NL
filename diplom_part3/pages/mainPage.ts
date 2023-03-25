@@ -7,7 +7,8 @@ class MainPage {
     private searchFieldLocator = '//*[@class="fast-search__input"]';
     private laptopsAndNetworksLocator = "(//ul[contains(@class,'catalog-navigation-classifier')]/li)[4]";
     private laptopsAndCompsLocator = '//div[contains(text(),"Ноутбуки, компьютеры, мониторы")]';
-    private laptopsLocator='//a[(@href="https://catalog.onliner.by/notebook")]';
+    private laptopsLocator = '//a[(@href="https://catalog.onliner.by/notebook")]';
+    private loginFormLocator = "//div[contains(@class,'auth-form__body')]";
 
 
     // Веб-элементы (приватные)
@@ -43,10 +44,14 @@ class MainPage {
         return cy.xpath(this.laptopsLocator);
     }
 
+    private get loginForm() {
+        return cy.xpath(this.loginFormLocator);
+    }
 
     // Методы взаимодействия с ними
     openLoginPage() {
         this.loginButton.click();
+        this.loginForm.should('be.visible');
     }
 
     openCatalog() {
@@ -56,7 +61,7 @@ class MainPage {
     expandProfileMenu() {
         this.expandProfileMenuButton.click();
     }
-   
+
     validateUserNickname(expectedNickname: string) {
         this.userNicknameLabel.should('contain.text', expectedNickname);
     }

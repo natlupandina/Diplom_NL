@@ -1,9 +1,11 @@
+import { searchLinzConst } from "../cypress/const/searchConsts";
+
 class LinzPage {
     // Локаторы
 
-    private linzSuggestionsLocator = "(//div//ul[contains(@id,'product-sub-navigation-container')]/li)[2]";
+    private linzSuggestionsLocator = "(//ul[contains(@id,'product-sub-navigation-container')]//span)[2]";
     private addToCartLocator = "(//div[contains(@class,'offers-list__part offers-list__part_action')]//div/a)[2]";
-    private linzTitleLocator = "//h1[contains(@class,'catalog-masthead')]";
+    private linzTitleLocator = "//div//div//h1[contains(@class,'catalog-masthead__title js-nav-header')]";
     private linzPriceLocator = "(//div[contains(@class,'offers-description__price')])[2]";
 
     //Веб элементы
@@ -25,6 +27,10 @@ class LinzPage {
     }
 
     // Методы взаимодействия с ними
+
+    verifyLinzPageOpened(){
+        this.linzPageTitle.should('contain.text', searchLinzConst);
+    }
 
     linzSuggestionsClick() {
         this.linzSuggestions.click();

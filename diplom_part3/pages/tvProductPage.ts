@@ -5,9 +5,10 @@ class TVPage {
     private tvAndVideoLocator = "(//div[contains(@class,'catalog-navigation-list__aside-list')])[2]/div[2]";
     private tvSectionLocator = "(//a[contains(@href,'https://catalog.onliner.by/tv')])[2]";
     private firstTVLocator = "(//div[contains(@class, 'schema-product__title')])[1]//span[1]";
-    private compareCheckboxLocator = "(//div[contains(@class,'catalog-masthead-controls catalog-masthead-controls_right')]//ul/li/label/span)[1]";
+    private compareCheckboxLocator = "(//span[contains(@class, 'i-checkbox__faux')])[1]";
     private plashkaLocator = "(//a[contains(@class,'compare-button__sub compare-button__sub_main')])[1]";
     private backtoTvLocator = "((//div[contains(@class,'breadcrumbs')])//a//span)[2]";
+    private firstTvDescriptionLocator = "(//ul[contains(@id,'product-sub-navigation-container')]//span)[1]";
 
     // Веб-элементы (приватные)
 
@@ -27,6 +28,15 @@ class TVPage {
         return cy.xpath(this.firstTVLocator);
     }
 
+    private get firstTvDescription() {
+        return cy.xpath(this.firstTvDescriptionLocator);
+    }
+
+    private get compareClick() {
+        return cy.xpath(this.compareCheckboxLocator);
+    }
+
+
     // Методы взаимодействия с ними
 
     openElectronicaSection() {
@@ -38,26 +48,25 @@ class TVPage {
     }
 
     opentvSection() {
-        this.tvSection.click();
+        this.tvSection.trigger('mouseover').click();
     }
 
     openfirstTv() {
         this.firstTv.click();
+        this.firstTvDescription.should('be.visible');
     }
 
-    clickCheckbox() {
-        cy.get(this.compareCheckboxLocator).check();
-    }
-
-    verifyCheckboxState() {
+    clickCheckboxandAndVerify() {
+        this.compareClick.click();
         cy.get(this.compareCheckboxLocator).should('be.checked');
     }
 
     verifyPlashka() {
         cy.get(this.plashkaLocator).should('be.visiblebe').contains('1 товар в сравнении');
     }
+
     goToTvSection() {
-        cy.get(this.backtoTvLocator).click;
+        cy.get(this.backtoTvLocator).click();
     }
 }
 

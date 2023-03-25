@@ -2,7 +2,7 @@ class LaptopsPage {
     // Локаторы
 
     private laptopsTitleLocator = "//h1[contains(@class, 'schema-header__title js-schema-header_title')]";
-    private asusCheckboxLocator = "(//span[contains(@class,'i-checkbox__faux')])[5]";
+    private asusCheckboxLocator = "(//span[contains(@class,'i-checkbox__faux')])[4]";
     private tagLocator = "(//span[contains(@class,'schema-tags__text')])[1]";
     private tagMatrixLocator = "(//span[contains(@class,'schema-tags__text')])[2]";
     private matrixFrequencyFirstLocator = "(//select[contains(@class,'schema-filter-control__item')])[9]";

@@ -1,4 +1,3 @@
-
 class SearchPopup {
     // Локаторы
     private searchFrameContainerLocator = "//iframe[@class='modal-iframe']";
@@ -8,7 +7,7 @@ class SearchPopup {
     private priceLocator = "//div[@class= 'product__price']";
     private suggestionsLocator = "//a[@class= 'button button_orange product__button']";
     private photoLocator = "//div[@class= 'product__title']/a";
-    private searchResultsLinzLocator = "//div[contains(@class,'result__wrapper')]";
+    private searchResultsLinzLocator = "//div[contains(@class,'result__item result__item_product')]";
     //Веб элементы
 
     private get photo() {
@@ -56,7 +55,7 @@ class SearchPopup {
         cy.getIFrameBody(this.searchFrameContainerLocator)
             .xpath(this.priceLocator)
             .should('be.visible')
-            .xpath(this.suggestionsLocator) //мржно ли так совместить два xpath в одном методе?
+            .xpath(this.suggestionsLocator) //можно ли так совместить два xpath в одном методе?
             .should('be.visible');
     }
 
@@ -70,6 +69,7 @@ class SearchPopup {
         .xpath(this.searchResultsLinzLocator)
         .click();
     }
+
 }
 
 export const searchPopup = new SearchPopup();

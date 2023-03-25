@@ -10,7 +10,6 @@ describe("Onliner1", () => {
 
     it("test1", () => {
         mainPage.openLoginPage();
-        loginPage.verifyLoginFormOpened();
         loginPage.logIn(email, password);
         loginPage.verifyCaptchaDisplayed();
      

@@ -3,10 +3,10 @@ export class RegistrationForm {
     password: string;
     username: string;
     age: number;
-    termsAgreement: boolean = false;
-    registered: boolean = false;
+    termsAgreement: boolean;
+    registered?: boolean;
 
-    constructor(email: string, password: string, username: string, age: number, termsAgreement: boolean, registered: boolean) {
+    constructor(email: string, password: string, username: string, age: number, termsAgreement: boolean, registered?: boolean) {
         this.email = email;
         this.password = password;
         this.username = username;
@@ -20,7 +20,9 @@ export class RegistrationForm {
         let regExpEmail = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i);
 
         if (!regExpEmail.test(email)) {
+            console.log(this.email);
             throw Error(`This ${email} is incorrect email!`);
+           
         } else {
             return this.email = email;
         }
@@ -39,7 +41,7 @@ export class RegistrationForm {
 
     setUsername(username: string) {
         if (username.trim() == '') {
-            throw Error(`This ${username} is not valid!`);
+            throw Error(`This username cannot be empty!`);
         } else {
             return this.username = username;
         }
@@ -49,48 +51,53 @@ export class RegistrationForm {
         if (age > 0 && age < 150) {
             return this.age = age;
         } else {
-            throw Error(`${age} isn't enough for registration!`);
+            throw Error(`${age} years isn't a valid age for registration!`);
         }
     }
 
     agreeWithTerms(): boolean {
+        this.termsAgreement = false;
         return this.termsAgreement = !this.termsAgreement;
     }
 
-    register(email: string, password: string, username: string, age: number, termsAgreement: boolean) { //должен ли принимать что то метод register?
+    register() {
+        this.registered = false;
+        
         if (this.email && this.password && this.username && this.age && this.termsAgreement) {
             const date: Date = new Date();
             this.registered = !this.registered;
-            return ('User successfully registered on ' + date.toUTCString());
-        } else {
+            return (`${this.username} successfully registered on ` + date.toUTCString());
+        } else  {
             let errors: string = ``;
-
             if (!this.email) {
-                errors += `\n This ${email} is incorrect email`;
+                errors += `\n This email ${this.email} is incorrect email!`;
             }
-            if (!this.password) {
-                errors += `\n This password ${password} is incorrect password`;
+             if (!this.password) {
+                errors += `\n This password ${this.password} is incorrect password!`;
             }
-            if (!this.username) {
-                errors += `\n This ${username} shouldn't be empty`;
+             if (!this.username) {
+                errors += `\n This username shouldn't be empty!`;
             }
-            if (!this.age) {
-                errors += `\n This ${age} is invalid`;
+             if (!this.age) {
+                errors += `\n This ${this.age} years is invalid age!`;
             }
-            if (!this.termsAgreement) {
-                errors += `\n This termsAgreement is ${termsAgreement}, but should be true`;
+             if (!this.termsAgreement) {
+                errors += `\n This termsAgreement is ${this.termsAgreement}, but should be true!`;
             }
-            this.registered = this.registered; // этим я хочу показать, что registred  не был установлен в trueю Верно ли это?
             return errors;
         }
-
     }
 }
 
-let newRegCheck = new RegistrationForm('nickmail', 'df', 'userName1', 18, true, false);
+//let newRegCheck = new RegistrationForm('nick', 'p', '', 0, false);
 
-//console.log( 'set Email', newRegCheck.setEmail('nickmail.com')); //метод работает корректно при неверном email
-//console.log( 'set Password', newRegCheck.setPassword('df'));
-console.log('registered', newRegCheck.register('nickmail', 'df', 'userName1', 18, true)); //получаю сообщение об успехе даже при неверном email . Получаетcя,
- //что метод registered не смотрит на метод setEmail?  если вызвать отдельно метод setEmail с неверным email - все ок, ошибка получается.  
+//Проверки каждого метода отдельно:
+//console.log('set Email', newRegCheck.setEmail('nick')); 
+//console.log( 'set Password', newRegCheck.setPassword('abcdeab'));
+//console.log('set username', newRegCheck.setUsername(''));
+//console.log('set age', newRegCheck.setAge(0));
+//console.log('are you agree?', newRegCheck.agreeWithTerms());
+//console.log('registered', newRegCheck.register()); //получаю сообщение об успехе даже при неверном email . Получаетcя,
+ //что метод registered не смотрит на метод setEmail?  если вызвать отдельно метод setEmail с неверным email - все ок,ошибка получается.  
 
+ 

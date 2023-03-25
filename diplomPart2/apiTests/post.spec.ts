@@ -31,12 +31,12 @@ describe("Posts", () => {
     });
 
     test("Get  posts for fake user", async () => {
-        const fakeUserPosts = await getPostByUserId(111);
-        expect(fakeUserPosts.id).toBeFalsy();
+        const fakeUserPost = await getPostByUserId(111);
+        expect(fakeUserPost.id).toBeFalsy();
     });
 
     test("Get  comments for fake post", async () => {
-        const fakeUserPosts = await getCommentsByPostId(1111);
+        const fakeUserPosts = await getCommentsByPostId(1212);
         expect(fakeUserPosts.id).toBeFalsy();
     });
 

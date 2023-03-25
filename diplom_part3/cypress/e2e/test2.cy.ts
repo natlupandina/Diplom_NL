@@ -10,9 +10,7 @@ describe("Onliner2", () => {
 
     it("test2", () => {
         mainPage.openLoginPage();
-        registrationPage.verifyLoginFormOpened();
         registrationPage.clickRegisterLink();
-        registrationPage.verifyRegisterForm();
         registrationPage.registerWithoutPassw(emailforRegistration);
         registrationPage.verifyRegisterAlert();
         registrationPage.registerWithPassw(passwordforRegistration);

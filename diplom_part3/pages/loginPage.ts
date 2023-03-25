@@ -4,7 +4,6 @@ class LoginPage {
     private loginFieldLocator = "//input[contains(@class,'auth-input')][@type='text']";
     private passwordFieldLocator = "//input[contains(@class,'auth-input')][@type='password']";
     private loginButtonLocator = "//button[@type='submit'][contains(@class,'auth-button')]";
-    private loginFormLocator = "//div[contains(@class,'auth-form__body')]";
     private toRegisterLocator = "(//a[contains(@class,'auth-form__link auth-form__link_primary auth-form__link_small')])[1]";
 
     // Веб-элементы (приватные)
@@ -21,10 +20,6 @@ class LoginPage {
         return cy.xpath(this.loginButtonLocator);
     }
 
-    private get loginForm() {
-        return cy.xpath(this.loginFormLocator);
-    }
-
     private get registerLink() {
         return cy.xpath(this.toRegisterLocator);
     }
@@ -36,10 +31,6 @@ class LoginPage {
         this.loginButton.click();
     }
 
-    verifyLoginFormOpened() {
-        this.loginForm.should('be.visible');
-
-    }
     clickRegisterLink() {
         this.registerLink.click();
     }

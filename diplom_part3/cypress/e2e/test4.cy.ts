@@ -2,7 +2,7 @@
 import { mainPage } from "../../pages/mainPage";
 import { searchPopup } from "../../pages/popups/searchPopUp";
 import { productPage } from "../../pages/cameraProductPage";
-import { searchConst, searchConst2 } from "../const/searchConsts";
+import { searchCartConst, searchPhotoConst } from "../const/searchConsts";
 
 
 describe("Onliner4", () => {
@@ -11,11 +11,11 @@ describe("Onliner4", () => {
     })
 
     it("test4", () => {
-        mainPage.setSearchTerm(searchConst);
-        searchPopup.validateSearchMemoryCartResults(searchConst);
+        mainPage.setSearchTerm(searchCartConst);
+        searchPopup.validateSearchMemoryCartResults(searchCartConst);
         searchPopup.clearSearch();
-        searchPopup.doNewSearchinIframe(searchConst2);
-        searchPopup.verifyPhotoIsDisplayed(searchConst2, 1);
+        searchPopup.doNewSearchinIframe(searchPhotoConst);
+        searchPopup.verifyPhotoIsDisplayed(searchPhotoConst, 1);
         searchPopup.verifyPriceAndSuggestionsDisplayed();
         searchPopup.openPhoto();
         productPage.verifyCameraName();

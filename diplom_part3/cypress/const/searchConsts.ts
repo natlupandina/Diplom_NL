@@ -1,3 +1,4 @@
-export const searchConst = "Карты памяти";
-export const searchConst2 = "Беззеркальный фотоаппарат Fujifilm X-T4 Body (серебристый)";
-export const searchConst3 = "Раствор для линз Bausch & Lomb ReNu MPS 360";
+export const searchCartConst = "Карты памяти";
+export const searchPhotoConst = "Беззеркальный фотоаппарат Fujifilm GFX 50S II Body";
+export const searchLinzConst = "Раствор для линз Bausch & Lomb ReNu MPS 360";
+

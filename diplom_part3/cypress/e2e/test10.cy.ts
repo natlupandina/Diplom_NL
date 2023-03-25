@@ -13,8 +13,7 @@ describe("Onliner10", () => {
         tvProductPage.opentvAndVideo();
         tvProductPage.opentvSection();
         tvProductPage.openfirstTv();
-        tvProductPage.clickCheckbox();
-        tvProductPage.verifyCheckboxState();
+        tvProductPage.clickCheckboxandAndVerify(); // missing ) after argument list -wasnt abel to find out an error/typo
         tvProductPage.verifyPlashka();
         tvProductPage.goToTvSection();
     })
